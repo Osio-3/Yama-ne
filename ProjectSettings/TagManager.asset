@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - Fruit
   - BadItem
-=======
   - BGMSource
->>>>>>> papillote
   layers:
   - Default
   - TransparentFX
