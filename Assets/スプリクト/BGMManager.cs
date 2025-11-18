@@ -10,6 +10,11 @@ public class BGMManager : MonoBehaviour
     [SerializeField] private AudioSource bgmSource;
     private static BGMManager instance;
 
+    public static BGMManager Instance
+    {
+        get { return instance; }
+    }
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -26,7 +31,7 @@ public class BGMManager : MonoBehaviour
     private void Start()
     {
         // 保存された音量をロードして反映
-        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1f);
+        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
         bgmSource.volume = savedVolume;
         if (!bgmSource.isPlaying)   // まだ流れていなければ再生
         {
@@ -36,7 +41,7 @@ public class BGMManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 1f);
+        float savedVolume = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
 
         // シーン内にBGM用のAudioSourceがあるなら差し替え
         AudioSource sceneSource = GameObject.FindWithTag("BGMSource")?.GetComponent<AudioSource>();
@@ -72,13 +77,13 @@ public class BGMManager : MonoBehaviour
         }
         else
         {
-            //Debug.LogError("BGMVolumeSlider が見つかりませんでした");
+            Debug.LogError("BGMVolumeSlider が見つかりませんでした");
         }
     }
 
     public void SetVolume(float value)
     {
-        //Debug.Log("SetVolume: " + value);
+        Debug.Log("SetVolume: " + value);
         bgmSource.volume = value;
         PlayerPrefs.SetFloat("BGMVolume", value);
     }
