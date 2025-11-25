@@ -20,4 +20,10 @@ public class PanelManager : MonoBehaviour
 
         panel.SetActive(true);
     }
+
+    // ★閉じる用メソッドを追加
+    public void ClosePanel(GameObject panel)
+    {
+        panel.SetActive(false);
+    }
 }
