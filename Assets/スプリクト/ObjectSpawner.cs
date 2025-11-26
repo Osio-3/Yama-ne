@@ -6,7 +6,6 @@ public class ObjectSpawner : MonoBehaviour
 {
     public GameObject[] objects; // 出現させたいオブジェクト
     public float minX = -8f, maxX = 8f, minY = -4f, maxY = 4f;
-    public float lifeTime = 5f; // 👈 オブジェクトの寿命（秒）
 
     void Start()
     {
@@ -21,14 +20,19 @@ public class ObjectSpawner : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
 
             Vector2 pos = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-            GameObject obj = objects[Random.Range(0, objects.Length)];
+            GameObject prefab = objects[Random.Range(0, objects.Length)];
 
-            GameObject spawned = Instantiate(obj, pos, Quaternion.identity);
+            // 正しく生成
+            GameObject spawned = Instantiate(prefab, pos, Quaternion.identity);
 
-            // 🌟 ここでランダムな大きさを設定
-            float randomScale = Random.Range(0.1f, 0.5f); // 好みの範囲に変更可能
+            // ランダムスケール設定
+            float randomScale = Random.Range(0.1f, 0.5f);
             spawned.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
 
+            // UI 連動のために登録
+            ChangeUIOnVisible.RegisterObject(spawned);
+
+            // 寿命設定
             float randomLife = Random.Range(2f, 6f);
             Destroy(spawned, randomLife);
         }
