@@ -2,23 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public Button menuButton;
     private MenuUI pauseMenu;
-
-    void Awake()
-    {
-        // 同じタイプのオブジェクトが既にあれば削除
-        if (FindObjectsOfType<Menu>().Length > 1)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        DontDestroyOnLoad(gameObject);
-    }
 
     void Start()
     {
