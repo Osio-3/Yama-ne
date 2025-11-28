@@ -11,7 +11,7 @@ public class WeatherText : MonoBehaviour
     [SerializeField] TextMeshProUGUI weatherText;
     [SerializeField] Image weatherIcon;
 
-    // 自作アイコン
+    // アイコン
     [Header("Day Icons")]
     public Sprite sunnySprite;
     public Sprite cloudySprite;
