@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class HungerUI : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class HungerUI : MonoBehaviour
     public Sprite emptyHeart;   // 空ハート
 
     [Range(0, 10)]
-    public float hunger = 10;      // お腹の満タン度
-
-    public float decreaseInterval = 5f; // 5秒ごとにお腹減少
+    public float hunger = 10f;      // お腹の満タン度
     private float timer;
-    
+
+    public float normalDecreaseInterval = 5f;   // 昼間の減少速度
+    public float nightDecreaseInterval = 20f;   // 夜の減少速度（遅い）
+
+    float currentInterval; // 今の時間帯に合わせた減る速度
+
     void Start()
     {
         UpdateHearts();
@@ -23,11 +27,24 @@ public class HungerUI : MonoBehaviour
 
     void Update()
     {
+        // 現在時刻を取得
+        int hour = DateTime.Now.Hour;
+
+        // 時間帯で減少間隔を変える
+        if (hour >= 22 || hour < 6)
+        {
+            currentInterval = nightDecreaseInterval;  // 夜 → ゆっくり
+        }
+        else
+        {
+            currentInterval = normalDecreaseInterval; // 昼 → 普通
+        }
+
         timer += Time.deltaTime;
 
-        if (timer >= decreaseInterval)
+        if (timer >= currentInterval)
         {
-            ReduceHunger(0.5f);  // お腹が0.5減る
+            ReduceHunger(0.5f); // 半分減る
             timer = 0;
         }
     }
