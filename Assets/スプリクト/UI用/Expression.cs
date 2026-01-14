@@ -1,23 +1,23 @@
-/*using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Expression : MonoBehaviour
+public class Expression : MonoBehaviour, IPointerClickHandler
 {
-    public Image statusImage;        // 表示用Image
-    public GameObject gifObject;   // AnimatedImage が付いたオブジェクト
+    public Image statusImage;
 
-    public Sprite normalSprite;      // 通常画像
-    public Sprite idleSprite;        // 放置時画像
+    public Sprite normalSprite;
+    public Sprite idleSprite;
 
-    [Header("クリック表情")]
-    public Sprite foodSprite;       // 通常時クリック
-    public Sprite reactSprite;   // 一時表情中クリック
+    [Header("表情")]
+    public Sprite reactSprite;     // キャラクリック用
+
+    [Header("ごはんデータ")]
+    public FoodData[] foods;
 
     public float expressionDuration = 3f;
-    public float idleTime = 30f;     // 放置と判定する秒数
+    public float idleTime = 30f;
 
     Coroutine currentCoroutine;
 
@@ -26,7 +26,6 @@ public class Expression : MonoBehaviour
 
     void Update()
     {
-        // 何かしら操作があったら
         if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
         {
             idleTimer = 0f;
@@ -43,7 +42,6 @@ public class Expression : MonoBehaviour
 
             if (!isIdle && idleTimer >= idleTime)
             {
-                // 放置状態へ
                 StopExpression();
                 statusImage.sprite = idleSprite;
                 isIdle = true;
@@ -51,23 +49,24 @@ public class Expression : MonoBehaviour
         }
     }
 
-    // ===== 餌クリック用 =====
-    public void ShowFoodExpression()
+    // ===== ごはんクリック =====
+    public void ShowFoodExpression(int foodIndex)
     {
-        //if (isIdle) isIdle = false;
+        if (foodIndex < 0 || foodIndex >= foods.Length) return;
 
-        StartExpression(expressionSprite, true);
+        StopExpression();
+        currentCoroutine = StartCoroutine(ChangeFoodImage(foods[foodIndex]));
     }
 
     // ===== キャラクリック =====
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isIdle) return; // 放置中は無視したい場合
+        if (isIdle) return;
 
         if (IsTemporaryPlaying())
         {
-            // GIFなし
-            ShowTemporary(reactSprite, duringTempClickSprite, false);
+            StopExpression();
+            currentCoroutine = StartCoroutine(ChangeReactImage());
         }
     }
 
@@ -76,31 +75,32 @@ public class Expression : MonoBehaviour
         return currentCoroutine != null;
     }
 
-    public void ShowTemporary(Sprite sprite, float duration, bool showGif)
+    IEnumerator ChangeFoodImage(FoodData food)
     {
-        if (currentCoroutine != null)
-            StopCoroutine(currentCoroutine);
+        statusImage.sprite = food.expressionSprite;
 
-        currentCoroutine = StartCoroutine(ChangeImage(sprite, duration, showGif));
-    }
-
-
-    IEnumerator ChangeImage(Sprite sprite, bool showGif)
-    {
-        statusImage.sprite = sprite;
-
-        //gif表示
-        if (gifObject != null)
-            gifObject.SetActive(true);
+        if (food.gifObject != null)
+            food.gifObject.SetActive(true);
 
         yield return new WaitForSeconds(expressionDuration);
 
-        //元に戻す
         if (!isIdle)
             statusImage.sprite = normalSprite;
 
-        if (gifObject != null)
-            gifObject.SetActive(false);
+        if (food.gifObject != null)
+            food.gifObject.SetActive(false);
+
+        currentCoroutine = null;
+    }
+
+    IEnumerator ChangeReactImage()
+    {
+        statusImage.sprite = reactSprite;
+
+        yield return new WaitForSeconds(expressionDuration);
+
+        if (!isIdle)
+            statusImage.sprite = normalSprite;
 
         currentCoroutine = null;
     }
@@ -113,8 +113,11 @@ public class Expression : MonoBehaviour
             currentCoroutine = null;
         }
 
-        if (gifObject != null)
-            gifObject.SetActive(false);
+        // 全GIF停止
+        foreach (var food in foods)
+        {
+            if (food.gifObject != null)
+                food.gifObject.SetActive(false);
+        }
     }
 }
-*/
