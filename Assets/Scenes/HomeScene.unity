@@ -241,9 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expression: {fileID: 1639470059}
-  expressionSprite: {fileID: 21300000, guid: 829bd26851075dc489c8484b0c363108, type: 3}
-  duringTempSprite: {fileID: 21300000, guid: 199b17f3ba5d51745b93191f41e54473, type: 3}
-  duration: 3
+  foodIndex: 1
 --- !u!1001 &51248657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1832,9 +1830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expression: {fileID: 1639470059}
-  expressionSprite: {fileID: 21300000, guid: 7cb743a16dfbd7e4b923029fb700c1a3, type: 3}
-  duringTempSprite: {fileID: 21300000, guid: 199b17f3ba5d51745b93191f41e54473, type: 3}
-  duration: 3
+  foodIndex: 0
 --- !u!1 &697994710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1954,9 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expression: {fileID: 1639470059}
-  expressionSprite: {fileID: 21300000, guid: 9f52d286a13af3a408c5a0588d9e50c3, type: 3}
-  duringTempSprite: {fileID: 21300000, guid: 199b17f3ba5d51745b93191f41e54473, type: 3}
-  duration: 3
+  foodIndex: 2
 --- !u!224 &843570038 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6295621433956591912, guid: a6976820a2cfb0944b1bd14627e07ac7, type: 3}
@@ -2846,12 +2840,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusImage: {fileID: 1639470060}
-  gifObject: {fileID: 1341516077}
   normalSprite: {fileID: 21300000, guid: 61001fce0707371478a859789dd66bcf, type: 3}
   idleSprite: {fileID: 21300000, guid: 2807748e17ccd934d83e8e37bc6eb46b, type: 3}
-  expressionSprite: {fileID: 21300000, guid: 7cb743a16dfbd7e4b923029fb700c1a3, type: 3}
-  duringTempClickSprite: {fileID: 21300000, guid: 199b17f3ba5d51745b93191f41e54473, type: 3}
-  clickDuration: 3
+  reactSprite: {fileID: 21300000, guid: 199b17f3ba5d51745b93191f41e54473, type: 3}
+  foods:
+  - expressionSprite: {fileID: 21300000, guid: 7cb743a16dfbd7e4b923029fb700c1a3, type: 3}
+    gifObject: {fileID: 1341516077}
+  - expressionSprite: {fileID: 21300000, guid: 829bd26851075dc489c8484b0c363108, type: 3}
+    gifObject: {fileID: 1341516077}
+  - expressionSprite: {fileID: 21300000, guid: 9f52d286a13af3a408c5a0588d9e50c3, type: 3}
+    gifObject: {fileID: 1341516077}
+  expressionDuration: 3
   idleTime: 10
 --- !u!114 &1639470060
 MonoBehaviour:
