@@ -7,136 +7,154 @@ public class StoryManager : MonoBehaviour
     public TextMeshProUGUI choiceAText;
     public TextMeshProUGUI choiceBText;
 
+    const int ROUTE_COUNT = 300;
+    const int END_INDEX = 299;
+    const int NEST_INDEX = 250;
+
     int storyIndex = 0;
+    int stepCount = 0;
 
-    // ===== ストーリー本文（0〜49）=====
-    string[] stories = new string[]
-    {
-        // 0〜9
-        "ヤマネは森をおさんぽしている。道が二つに分かれている。",
-        "木の根元にどんぐりが落ちている。",
-        "少し暗い道。葉っぱがざわざわしている。",
-        "どんぐりはつやつやしていておいしそう。",
-        "何もせず歩いていると、小さな音が聞こえた。",
-        "枝の上にリスがいる。じっとこちらを見ている。",
-        "風が強くなってきた。少し寒い。",
-        "どんぐりを食べて元気が出た！",
-        "ポケットが少し重たい。",
-        "森の奥へ続く道が見えてきた。",
+    string[] stories = new string[ROUTE_COUNT];
+    string[] choiceA = new string[ROUTE_COUNT];
+    string[] choiceB = new string[ROUTE_COUNT];
 
-        // 10〜19
-        "大きな木のうろがある。",
-        "小川のせせらぎが聞こえる。",
-        "フクロウの影が木の上を横切った。",
-        "木の実がたくさん落ちている場所に出た。",
-        "地面がぬかるんでいる。",
-        "見覚えのない花が咲いている。",
-        "遠くで鳥の鳴き声がする。",
-        "少し疲れてきた。",
-        "木漏れ日が気持ちいい。",
-        "道がまた二つに分かれている。",
-
-        // 20〜29
-        "明るい道は歩きやすそう。",
-        "暗い道は静かで少し怖い。",
-        "キノコが生えている。",
-        "葉っぱの山がある。",
-        "風で枝が揺れている。",
-        "小さな虫が近づいてきた。",
-        "見晴らしのいい場所に出た。",
-        "どこかで物音がした。",
-        "お腹がすいてきた。",
-        "森の出口が近そうだ。",
-
-        // 30〜39
-        "落ち葉がたくさん積もっている。",
-        "風が止んで静かになった。",
-        "大きな影が一瞬よぎった。",
-        "安心できる匂いがする。",
-        "森が少し開けてきた。",
-        "木の上から木の実が落ちてきた。",
-        "足元に小さな穴がある。",
-        "風に葉っぱが舞っている。",
-        "遠くに明かりが見える。",
-        "少し眠くなってきた。",
-
-        // 40〜49
-        "森の出口がはっきり見えてきた。",
-        "最後に振り返ると、森が静かに揺れている。",
-        "安心して力が抜けた。",
-        "小さな達成感が胸に広がる。",
-        "森の外の光がまぶしい。",
-        "外の空気は少し違う。",
-        "おさんぽはもうすぐ終わり。",
-        "今日はいろんなことがあった。",
-        "ヤマネは安全な場所に戻ってきた。",
-        "たくさん歩いて、ヤマネは満足そうに目を閉じた。"
-    };
-
-    // ===== 選択肢Aの文字 =====
-    string[] choiceA = new string[]
-    {
-        "右に進む","拾う","足早に進む","食べる","音の方へ",
-        "手を振る","急ぐ","ジャンプする","確認する","奥へ進む",
-        "中を見る","近づく","隠れる","集める","慎重に進む",
-        "匂いをかぐ","音の方へ","休む","ごろんとする","明るい道",
-        "小走りする","そっと進む","触る","飛び込む","待つ",
-        "観察する","景色を見る","確認する","探す","急ぐ",
-        "かき分ける","耳をすます","隠れる","近づく","辺りを見る",
-        "拾う","のぞく","追いかける","向かう","目をこする",
-        "走る","手を振る","伸びをする","にっこりする","目を細める",
-        "感じる","満足する","思い出す","休む","おわる"
-    };
-
-    // ===== 選択肢Bの文字 =====
-    string[] choiceB = new string[]
-    {
-        "左に進む","進む","立ち止まる","しまう","無視する",
-        "隠れる","ゆっくり","走る","そのまま","引き返す",
-        "通り過ぎる","別の道","見上げる","一つだけ","別ルート",
-        "離れる","反対方向","進む","深呼吸","暗い道",
-        "周りを見る","戻る","避ける","よける","進む",
-        "逃げる","進む","気にしない","我慢","ゆっくり",
-        "踏みしめる","歩く","走る","無視","出口を探す",
-        "よける","避ける","立ち止まる","様子を見る","気合",
-        "歩く","進む","深呼吸","うなずく","一気に出る",
-        "歩き出す","名残惜しむ","忘れる","寝る",""
-    };
-
-    // ===== 次に進むID（A/B）=====
-    int[] nextA = new int[50];
-    int[] nextB = new int[50];
+    int[] nextA = new int[ROUTE_COUNT];
+    int[] nextB = new int[ROUTE_COUNT];
 
     void Start()
     {
-        // 適当な分岐ルール（例）
-        for (int i = 0; i < 49; i++)
-        {
-            nextA[i] = Mathf.Min(i + 1, 49);
-            nextB[i] = Mathf.Min(i + 2, 49);
-        }
-
-        nextA[49] = 49;
-        nextB[49] = 49;
-
+        CreateStories();
+        CreateRandomRoute();
         ShowStory();
     }
 
+    // ===============================
+    // 文章・選択肢を作る
+    // ===============================
+    void CreateStories()
+    {
+        for (int i = 0; i < ROUTE_COUNT; i++)
+        {
+            // パターン分けで文章を変える
+            switch (i % 6)
+            {
+                case 0:
+                    stories[i] = "ヤマネは落ち葉の上を歩いている。カサカサ音が楽しい。";
+                    choiceA[i] = "そのまま進む";
+                    choiceB[i] = "音のする方を見る";
+                    break;
+
+                case 1:
+                    stories[i] = "木の根元にどんぐりが落ちている。";
+                    choiceA[i] = "拾って食べる";
+                    choiceB[i] = "あとで食べる";
+                    break;
+
+                case 2:
+                    stories[i] = "少し暗い道に入った。風がひんやりしている。";
+                    choiceA[i] = "気にせず進む";
+                    choiceB[i] = "明るい方へ行く";
+                    break;
+
+                case 3:
+                    stories[i] = "遠くでフクロウの声が聞こえた。";
+                    choiceA[i] = "じっとする";
+                    choiceB[i] = "静かに移動する";
+                    break;
+
+                case 4:
+                    stories[i] = "甘い匂いが漂ってきた。果物がありそうだ。";
+                    choiceA[i] = "匂いを追う";
+                    choiceB[i] = "無視して進む";
+                    break;
+
+                default:
+                    stories[i] = "ヤマネは少し眠くなってきた。";
+                    choiceA[i] = "目をこすって進む";
+                    choiceB[i] = "立ち止まる";
+                    break;
+            }
+        }
+
+        // 🏠 巣イベント
+        stories[NEST_INDEX] = "ヤマネは巣に戻り、ふかふかの寝床で丸くなった。少し元気が戻った気がする。";
+        choiceA[NEST_INDEX] = "またおさんぽに行く";
+        choiceB[NEST_INDEX] = "今日はここまで";
+
+        // 🌙 エンディング
+        stories[END_INDEX] = "たくさん歩いた一日が終わる。ヤマネは安心して眠りについた。";
+        choiceA[END_INDEX] = "おわり";
+        choiceB[END_INDEX] = "";
+    }
+
+    // ===============================
+    // ランダム遷移生成
+    // ===============================
+    void CreateRandomRoute()
+    {
+        for (int i = 0; i < ROUTE_COUNT - 2; i++)
+        {
+            if (i == NEST_INDEX) continue;
+
+            nextA[i] = Random.Range(i + 1, ROUTE_COUNT - 1);
+            nextB[i] = Random.Range(i + 1, ROUTE_COUNT - 1);
+
+            if (nextA[i] == nextB[i])
+            {
+                nextB[i] = Mathf.Min(nextB[i] + 1, ROUTE_COUNT - 2);
+            }
+        }
+
+        // 巣からの遷移
+        nextA[NEST_INDEX] = Random.Range(0, 50);
+        nextB[NEST_INDEX] = END_INDEX;
+
+        // 終了
+        nextA[END_INDEX] = END_INDEX;
+        nextB[END_INDEX] = END_INDEX;
+    }
+
+    // ===============================
+    // 表示処理
+    // ===============================
     void ShowStory()
     {
         storyText.text = stories[storyIndex];
         choiceAText.text = choiceA[storyIndex];
         choiceBText.text = choiceB[storyIndex];
+
+        // ⭐ 定期的に「巣に帰る」
+        if (
+            stepCount > 0 &&
+            stepCount % 5 == 0 &&
+            storyIndex != NEST_INDEX &&
+            storyIndex != END_INDEX
+        )
+        {
+            choiceBText.text = "巣に帰る";
+            nextB[storyIndex] = NEST_INDEX;
+        }
+
+        if (storyIndex == END_INDEX)
+        {
+            choiceAText.text = "おわり";
+            choiceBText.text = "";
+        }
     }
 
+    // ===============================
+    // ボタン処理
+    // ===============================
     public void SelectA()
     {
+        stepCount++;
         storyIndex = nextA[storyIndex];
         ShowStory();
     }
 
     public void SelectB()
     {
+        stepCount++;
         storyIndex = nextB[storyIndex];
         ShowStory();
     }
