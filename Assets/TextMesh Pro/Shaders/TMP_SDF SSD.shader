@@ -64,7 +64,9 @@ Properties {
     _ScaleX             ("Scale X", float) = 1.0
     _ScaleY             ("Scale Y", float) = 1.0
     _PerspectiveFilter  ("Perspective Correction", Range(0, 1)) = 0.875
-    _Sharpness          ("Sharpness", Range(-1,1)) = 0
+
+    [HideInInspector]_Sharpness ("Sharpness", float) = 0
+    //_Sharpness          ("Sharpness", Range(-1,1)) = 0
 
     _VertexOffsetX      ("Vertex OffsetX", float) = 0
     _VertexOffsetY      ("Vertex OffsetY", float) = 0
@@ -111,6 +113,11 @@ SubShader {
 
     Pass {
         CGPROGRAM
+
+        CBUFFER_START(UnityPerMaterial)
+    float _Sharpness;
+    CBUFFER_END
+
         #pragma target 3.0
         #pragma vertex VertShader
         #pragma fragment PixShader
@@ -228,7 +235,7 @@ SubShader {
 
             float2 pixelSize = float2(ddx(input.atlas.y), ddy(input.atlas.y));
             pixelSize *= _TextureWidth * .75;
-            float scale = rsqrt(dot(pixelSize, pixelSize)) * _GradientScale * (_Sharpness + 1);
+            float scale = rsqrt(dot(pixelSize, pixelSize)) * _GradientScale /** (_Sharpness + 1)*/;
 
             float weight = input.weight;
             float bias = (.5 - weight) + (.5 / scale);
