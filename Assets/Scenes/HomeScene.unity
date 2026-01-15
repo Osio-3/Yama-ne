@@ -2845,7 +2845,6 @@ GameObject:
   - component: {fileID: 1639470061}
   - component: {fileID: 1639470060}
   - component: {fileID: 1639470059}
-  - component: {fileID: 1639470062}
   m_Layer: 5
   m_Name: yamasann
   m_TagString: Untagged
@@ -2887,6 +2886,7 @@ MonoBehaviour:
   statusImage: {fileID: 1639470060}
   normalSprite: {fileID: 21300000, guid: 61001fce0707371478a859789dd66bcf, type: 3}
   idleSprite: {fileID: 21300000, guid: 2807748e17ccd934d83e8e37bc6eb46b, type: 3}
+  dangerSprite: {fileID: 21300000, guid: f9efef74bf1478a45bdf324df6bf15eb, type: 3}
   reactSprite: {fileID: 21300000, guid: 199b17f3ba5d51745b93191f41e54473, type: 3}
   foods:
   - expressionSprite: {fileID: 21300000, guid: 7cb743a16dfbd7e4b923029fb700c1a3, type: 3}
@@ -2935,35 +2935,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639470057}
   m_CullTransparentMesh: 1
---- !u!114 &1639470062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639470057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: 
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1663874671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,6 +3102,7 @@ MonoBehaviour:
   hunger: 10
   normalDecreaseInterval: 5
   nightDecreaseInterval: 20
+  expression: {fileID: 1639470059}
 --- !u!1 &2087893253
 GameObject:
   m_ObjectHideFlags: 0

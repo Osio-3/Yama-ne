@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StrollScene.unity
     guid: 7c98d44ea88605248acb5e3d6a621060
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 7dd1af12c65f4c646b9c8ed7b5ef0f31
   m_configObjects: {}

@@ -9,6 +9,7 @@ public class Expression : MonoBehaviour, IPointerClickHandler
 
     public Sprite normalSprite;
     public Sprite idleSprite;
+    public Sprite dangerSprite;
 
     [Header("表情")]
     public Sprite reactSprite;     // キャラクリック用
@@ -67,6 +68,20 @@ public class Expression : MonoBehaviour, IPointerClickHandler
         {
             StopExpression();
             currentCoroutine = StartCoroutine(ChangeReactImage());
+        }
+    }
+
+    public void SetDanger(bool isDanger)
+    {
+        if (isDanger)
+        {
+            StopExpression();
+            statusImage.sprite = dangerSprite;
+        }
+        else
+        {
+            if (!isIdle)
+                statusImage.sprite = normalSprite;
         }
     }
 

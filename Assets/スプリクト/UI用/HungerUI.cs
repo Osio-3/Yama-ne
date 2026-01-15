@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class HungerUI : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class HungerUI : MonoBehaviour
     public float nightDecreaseInterval = 20f;   // 夜の減少速度（遅い）
 
     float currentInterval; // 今の時間帯に合わせた減る速度
+
+    public Expression expression;
+    const float dangerThreshold = 2f;
 
     void Start()
     {
@@ -70,11 +74,32 @@ public class HungerUI : MonoBehaviour
         }
     }
 
+    void CheckDanger()
+    {
+        expression.SetDanger(hunger <= dangerThreshold);
+    }
+
+    void CheckDeath()
+    {
+        if (hunger <= 0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("プレイヤーは餓死しました");
+        SceneManager.LoadScene("GameOver"); // ゲームオーバー画面へ
+    }
+
+
     public void Feed(float amount)
     {
         hunger += amount;
         hunger = Mathf.Clamp(hunger, 0, hearts.Length);
         UpdateHearts();
+        CheckDanger();
     }
 
     public void ReduceHunger(float amount)
@@ -82,6 +107,8 @@ public class HungerUI : MonoBehaviour
         hunger -= amount;
         hunger = Mathf.Clamp(hunger, 0, hearts.Length);
         UpdateHearts();
+        CheckDanger();
+        CheckDeath();
     }
 }
 
