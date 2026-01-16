@@ -7,6 +7,6 @@ public class Kirikae : MonoBehaviour
 {
     public void Kirikae_button()
     {
-        SceneManager.LoadScene("HomeScene");
+        SceneManager.LoadScene("StrollScene");
     }
 }
