@@ -295,8 +295,9 @@ GameObject:
   - component: {fileID: 635243751682949412}
   - component: {fileID: 8598613847325528305}
   - component: {fileID: 1477157855578642676}
+  - component: {fileID: 4890665912319774055}
   m_Layer: 5
-  m_Name: "\u7269"
+  m_Name: "\u306F\u308A\u3055\u3093_UI"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,6 +360,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4890665912319774055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291867937875650878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66200df1798ff64a819b2907329cc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalId: "\u306F\u308A\u3055\u3093"
+  iconImage: {fileID: 1477157855578642676}
 --- !u!1 &409521534343908341
 GameObject:
   m_ObjectHideFlags: 0
@@ -12974,8 +12989,9 @@ GameObject:
   - component: {fileID: 7323773169335994682}
   - component: {fileID: 4934607905557891854}
   - component: {fileID: 3127522467634248594}
+  - component: {fileID: 7036092263382043949}
   m_Layer: 5
-  m_Name: Image
+  m_Name: "\u306F\u308A\u3055\u3093_UI"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13038,6 +13054,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7036092263382043949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280268795913583396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66200df1798ff64a819b2907329cc86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalId: "\u306F\u308A\u3055\u3093"
+  iconImage: {fileID: 3127522467634248594}
 --- !u!1 &8309580201893513534
 GameObject:
   m_ObjectHideFlags: 0

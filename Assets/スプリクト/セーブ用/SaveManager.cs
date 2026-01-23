@@ -18,15 +18,19 @@ public class SaveManager : MonoBehaviour
     {
         SaveData data = new SaveData();
 
-        // ★ ここにセーブしたい内容を入れる
-        data.stage = 3;
-        data.hp = 50;
-        data.coin = 120;
+        // ここにセーブしたい内容を入れる
+
+        // ★ UI状態を保存
+        foreach (var kv in ChangeUIManager.Instance.GetAllUnlocked())
+        {
+            if (kv.Value)
+                data.unlockedAnimalIds.Add(kv.Key);
+        }
 
         // JSON化
-        string json = JsonUtility.ToJson(data);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
-        Debug.Log("セーブ完了: " + path);
+        Debug.Log("セーブ完了");
     }
 
     // ▼ ロード
@@ -41,14 +45,14 @@ public class SaveManager : MonoBehaviour
         string json = File.ReadAllText(path);
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-        Debug.Log("ロード完了");
-        Debug.Log("stage: " + data.stage);
-        Debug.Log("hp: " + data.hp);
-        Debug.Log("coin: " + data.coin);
+        // UI状態復元
+        var dict = new Dictionary<string, bool>();
+        foreach (var id in data.unlockedAnimalIds)
+        {
+            dict[id] = true;
+        }
 
-        // ★ここでゲーム側の変数に反映させる
-        // player.hp = data.hp;
-        // gameManager.stage = data.stage;
-        // etc.
+        ChangeUIManager.Instance.SetAllUnlocked(dict);
+        Debug.Log("ロード完了");
     }
 }
