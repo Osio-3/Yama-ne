@@ -12,6 +12,7 @@ public class AnimalPanel : MonoBehaviour
         {
             // ƒpƒlƒ‹‚ªo‚½uŠÔ‚É}ŠÓ“o˜^
             ChangeUIManager.Instance.UnlockAnimal(animalId);
-        }   
+            Debug.Log("AnimalPanel •\¦: " + animalId);
+        }
     }
 }

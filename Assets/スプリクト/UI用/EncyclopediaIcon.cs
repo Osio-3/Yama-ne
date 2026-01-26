@@ -8,16 +8,18 @@ public class EncyclopediaIcon : MonoBehaviour
     public string animalId;
     public Image iconImage;
 
-    void Start()
+    void OnEnable()
     {
         Refresh();
     }
 
     public void Refresh()
     {
-        if (ChangeUIManager.Instance == null) return;
+        bool unlocked =
+            ChangeUIManager.Instance != null
+            && ChangeUIManager.Instance.IsAnimalUnlocked(animalId);
 
-        if (ChangeUIManager.Instance.IsAnimalUnlocked(animalId))
+        if (unlocked)
         {
             iconImage.color = Color.white;
         }
