@@ -28,12 +28,6 @@ public class ZukanTarget : MonoBehaviour
         if (!ChangeUIManager.Instance.IsAnimalUnlocked(encyclopediaKey)) return;
         if (img == null) return;
 
-        // 元の色を使う（白固定しない）
-        img.color = new Color(
-            defaultColor.r,
-            defaultColor.g,
-            defaultColor.b,
-            defaultColor.a
-        );
+        img.color = defaultColor; // 元の色に戻す
     }
 }
