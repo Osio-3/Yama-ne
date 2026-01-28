@@ -12,7 +12,7 @@ public class AnimalPanel : MonoBehaviour
 
         // ê}ä”ìoò^
         ChangeUIManager.Instance.UnlockAnimal(animalId);
-        Debug.Log("AnimalPanel ï\é¶: " + animalId);
+        //Debug.Log("Unlock åƒÇ—èoÇµ: " + animalId);
 
         // Åö ê}ä”UIÇçXêV
         RefreshZukanUI();
@@ -20,14 +20,11 @@ public class AnimalPanel : MonoBehaviour
 
     void RefreshZukanUI()
     {
-        var targets = FindObjectsOfType<ZukanTarget>(true);
+        var icons = FindObjectsOfType<EncyclopediaIcon>(true);
 
-        foreach (var t in targets)
+        foreach (var icon in icons)
         {
-            if (t.encyclopediaKey == animalId)
-            {
-                t.Refresh(); // Ç±ÇÃImageÇæÇØîíÇ≠Ç»ÇÈ
-            }
+            icon.Refresh();
         }
     }
 }
