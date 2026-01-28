@@ -48,10 +48,27 @@ public class ChangeUIOnVisible : MonoBehaviour
                 targetUIs.AddRange(images);
             }
         }
+
+        // ¥ ƒZ[ƒuó‘Ô”½‰f
+        foreach (var img in targetUIs)
+        {
+            if (ChangeUIManager.Instance != null &&
+                ChangeUIManager.Instance.IsAnimalUnlocked(gameObject.name))
+            {
+                img.color = Color.white;
+            }
+        }
     }
 
     void OnBecameVisible()
     {
+        // š ƒpƒlƒ‹‚ªŒ©‚¦‚½uŠÔ‚É}ŠÓ“o˜^
+        if (ChangeUIManager.Instance != null)
+        {
+            ChangeUIManager.Instance.UnlockAnimal(gameObject.name);
+        }
+
+        // }ŠÓUI‚ğ”’‚­
         foreach (var img in targetUIs)
         {
             img.color = Color.white;

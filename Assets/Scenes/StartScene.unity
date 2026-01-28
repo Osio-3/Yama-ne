@@ -218,7 +218,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1524990734}
         m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
-        m_MethodName: LoadNextScene
+        m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8179\u30DA\u30B3\u30E4\u30DE\u30CD\n\uFF5E\u98DF\u3044\u3057\u3093\u574A\u306E\u9006\u8972\uFF01\uFF1F\uFF5E"
+  m_text: "\u8179\u30DA\u30B3\u30E4\u30DE\u30CD\n\uFF5E\u98DF\u3044\u3057\u3093\u574A\u306E\u9006\u8972\uFF01\uFF1F\uFF5E\n<size=40>\u9006\u8972\u3063\u3066\u4F55\u3060\u3063\u3051\uFF1F</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
   m_sharedMaterial: {fileID: 40205502037153279, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
@@ -1653,9 +1653,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1709929343}
-        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
-        m_MethodName: LoadGame
+      - m_Target: {fileID: 1524990734}
+        m_TargetAssemblyTypeName: LoadingScene, Assembly-CSharp
+        m_MethodName: LoadNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
