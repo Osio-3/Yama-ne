@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -6,54 +7,26 @@ using System.IO;
 
 public class LoadingScene : MonoBehaviour
 {
-    [SerializeField] private GameObject _loadingUI;
-    [SerializeField] private Slider _slider;
-    [SerializeField] private float minLoadingTime = 5.0f; // 最低表示時間
+    [SerializeField] private GameObject loadingUI;
+    [SerializeField] private Slider slider;
+    [SerializeField] private float minLoadingTime = 5f;
 
-    private bool isNewGame = false;
-
-    // ▼ つづきから
-    public void LoadNextScene()
+    public void Load(string sceneName)
     {
-        isNewGame = false;
-        _loadingUI.SetActive(true);
-        StartCoroutine(LoadScene());
+        loadingUI.SetActive(true);
+        StartCoroutine(LoadCoroutine(sceneName));
     }
 
-    // ▼ はじめから
-    public void StartNewGame()
+    IEnumerator LoadCoroutine(string sceneName)
     {
-        isNewGame = true;
-        _loadingUI.SetActive(true);
-        StartCoroutine(LoadScene());
-    }
-
-    IEnumerator LoadScene()
-    {
-        // ★ はじめから時の初期化
-        if (isNewGame)
-        {
-            // UI Manager 初期化
-            if (ChangeUIManager.Instance != null)
-                ChangeUIManager.Instance.ResetAll();
-
-            // セーブ削除
-            string path = Application.persistentDataPath + "/save.json";
-            if (File.Exists(path))
-                File.Delete(path);
-        }
-
         float elapsed = 0f;
-        AsyncOperation async = SceneManager.LoadSceneAsync("HomeScene");
+        AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
 
         while (elapsed < minLoadingTime || async.progress < 0.9f)
         {
             elapsed += Time.unscaledDeltaTime;
-
-            float progress = Mathf.Min(async.progress / 0.9f, elapsed / minLoadingTime);
-            _slider.value = progress;
-
+            slider.value = Mathf.Min(async.progress / 0.9f, elapsed / minLoadingTime);
             yield return null;
         }
 

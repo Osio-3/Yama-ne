@@ -9,29 +9,35 @@ public class ChangeUIManager : MonoBehaviour
     // UIの表示状態を保存
     private Dictionary<string, bool> encyclopediaUnlocked
         = new Dictionary<string, bool>();
+    private HashSet<string> unlockedAnimals = new HashSet<string>();
 
     void Awake()
     {
-        if (Instance != null)
+        //Debug.Log("ChangeUIManager Awake: " + GetInstanceID());
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     // 図鑑登録
     public void UnlockAnimal(string animalId)
     {
-        encyclopediaUnlocked[animalId] = true;
+        //Debug.Log("UnlockAnimal: " + animalId + " / InstanceID: " + GetInstanceID());
+        unlockedAnimals.Add(animalId);
     }
 
     public bool IsAnimalUnlocked(string animalId)
     {
-        return encyclopediaUnlocked.ContainsKey(animalId)
-            && encyclopediaUnlocked[animalId];
+        bool result = unlockedAnimals.Contains(animalId);
+        //Debug.Log("IsUnlocked: " + animalId + " = " + result + " / InstanceID: " + GetInstanceID());
+        return result;
     }
 
     public Dictionary<string, bool> GetAllUnlocked()
