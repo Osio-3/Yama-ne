@@ -55,6 +55,17 @@ public class ChangeUIManager : MonoBehaviour
     // はじめから用
     public void ResetAll()
     {
+        // データリセット
         encyclopediaUnlocked.Clear();
+        unlockedAnimals.Clear();
+
+        // 図鑑アイコンを全て初期色に戻す
+        var icons = FindObjectsOfType<ZukanIcon>(true);
+        foreach (var icon in icons)
+        {
+            icon.ResetColor();
+        }
+
+        Debug.Log("ChangeUIManager: ResetAll 完了");
     }
 }

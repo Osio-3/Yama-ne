@@ -24,6 +24,11 @@ public class GameFlow : MonoBehaviour
         loader.Load("StartScene");
     }
 
+    public void StartStroll()
+    {
+        loader.Load("StrollScene");
+    }
+
     void DeleteSave()
     {
         string path = Application.persistentDataPath + "/save.json";
