@@ -1840,7 +1840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1615993578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2088,9 +2088,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1648949494}
-  selectedCommands:
-  - {fileID: 1648949571}
+  - {fileID: 1648949506}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -3450,8 +3449,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 28.028671
-    y: 39.47098
+    x: 31.15367
+    y: 42.59598
     width: 142.18745
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
