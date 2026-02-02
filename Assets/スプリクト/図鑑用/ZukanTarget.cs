@@ -10,6 +10,9 @@ public class ZukanTarget : MonoBehaviour
     private Image img;
     private Color defaultColor;
 
+    public string animalId;
+    private bool registered = false;
+
     void Awake()
     {
         img = GetComponent<Image>();
@@ -20,6 +23,11 @@ public class ZukanTarget : MonoBehaviour
     void OnEnable()
     {
         Refresh();
+
+        if (registered) return;
+
+        registered = true;
+        ChangeUIManager.Instance?.UnlockAnimal(animalId);
     }
 
     public void Refresh()

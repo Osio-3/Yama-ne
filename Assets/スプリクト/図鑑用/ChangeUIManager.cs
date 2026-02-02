@@ -35,9 +35,10 @@ public class ChangeUIManager : MonoBehaviour
 
     public bool IsAnimalUnlocked(string animalId)
     {
-        bool result = unlockedAnimals.Contains(animalId);
+        return unlockedAnimals.Contains(animalId);
+        //bool result = unlockedAnimals.Contains(animalId);
         //Debug.Log("IsUnlocked: " + animalId + " = " + result + " / InstanceID: " + GetInstanceID());
-        return result;
+        //return result;
     }
 
     public Dictionary<string, bool> GetAllUnlocked()
@@ -56,14 +57,14 @@ public class ChangeUIManager : MonoBehaviour
     public void ResetAll()
     {
         // データリセット
-        encyclopediaUnlocked.Clear();
+        //encyclopediaUnlocked.Clear();
         unlockedAnimals.Clear();
 
         // 図鑑アイコンを全て初期色に戻す
-        var icons = FindObjectsOfType<ZukanIcon>(true);
+        var icons = FindObjectsOfType<EncyclopediaIcon>(true);
         foreach (var icon in icons)
         {
-            icon.ResetColor();
+            icon.Refresh();
         }
 
         Debug.Log("ChangeUIManager: ResetAll 完了");

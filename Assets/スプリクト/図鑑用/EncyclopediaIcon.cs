@@ -30,9 +30,7 @@ public class EncyclopediaIcon : MonoBehaviour
         if (ChangeUIManager.Instance == null) return;
 
         bool unlocked = ChangeUIManager.Instance.IsAnimalUnlocked(animalId);
-
         iconImage.color = unlocked ? Color.white : defaultColor;
         //Debug.Log($"{animalId} unlocked = {unlocked}");
-
     }
 }
