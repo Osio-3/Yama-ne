@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: peri-
-  animalId: 
+  animalId: peri-
 --- !u!1 &546998841
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: kaba
-  animalId: 
+  animalId: kaba
 --- !u!1 &577711595
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: monga
-  animalId: 
+  animalId: monga
 --- !u!1 &593948732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,7 +1130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: risu
-  animalId: 
+  animalId: risu
 --- !u!1 &638941812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: kemono
-  animalId: 
+  animalId: kemono
 --- !u!1 &1157045647
 GameObject:
   m_ObjectHideFlags: 0
@@ -6346,7 +6346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: kawauso
-  animalId: 
+  animalId: kawauso
 --- !u!1 &1819937992
 GameObject:
   m_ObjectHideFlags: 0
@@ -6516,7 +6516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encyclopediaKey: rasukaru
-  animalId: 
+  animalId: rasukaru
 --- !u!1 &1853487094
 GameObject:
   m_ObjectHideFlags: 0
