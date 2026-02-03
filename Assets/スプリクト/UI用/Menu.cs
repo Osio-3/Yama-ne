@@ -13,6 +13,12 @@ public class Menu : MonoBehaviour
         // シーン上の MenuUI を探す
         pauseMenu = FindObjectOfType<MenuUI>();
 
+        if (pauseMenu == null)
+        {
+            Debug.LogError("MenuUI が見つかりません。常駐オブジェクトを確認してください。");
+            return;
+        }
+
         // ボタンイベント登録
         menuButton.onClick.AddListener(OnMenuButtonClicked);
     }

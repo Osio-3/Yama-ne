@@ -16,6 +16,20 @@ public class MenuUI : MonoBehaviour
     private List<Button> menuButtons = new List<Button>();
     private int currentSelectedIndex = 0;
 
+    private static MenuUI instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // メニューを開く
     public void OpenPauseMenu()
     {
@@ -48,7 +62,6 @@ public class MenuUI : MonoBehaviour
                 });
             }
         }
-
     }
 
     // メニューを閉じる
@@ -64,7 +77,6 @@ public class MenuUI : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-
         menuButtons.Clear();
     }
 
