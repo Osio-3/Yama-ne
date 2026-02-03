@@ -1558,7 +1558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.89411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2869,7 +2869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=55>\u30E2\u30E2\u30F3\u30AC</size>\n\u304B\u308F\u3044\u3044\u306E\u306B\u3054\u3073\u304C\n\u3078\u3093\u3066\u3053\uFF1F\n\u307B\u304B\u306E\u3082\u308A\u304B\u3089\u304D\u305F\u3089\u3057\u3044"
+  m_text: "<size=55>\u30E2\u30E2\u30F3\u30AC</size>\n\u307B\u304B\u306E\u3082\u308A\u304B\u3089\u304D\u305F\u3089\u3057\u3044\n\u305D\u3089\u3092\u3068\u3076\u306E\u304C\u3060\u3044\u3059\u304D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
   m_sharedMaterial: {fileID: 40205502037153279, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
@@ -13454,7 +13454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6308047597671820847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14945,7 +14945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=55>\u30AB\u30E2\u30CE\u30CF\u30B7</size>\n\u30DA\u30EA\u30FC\u3058\u3083\u306A\u3044\u3089\u3057\u3044\uFF1F"
+  m_text: "<size=55>\u30AB\u30E2\u30A2</size>\n\u307F\u305A\u3079\u306B\u3042\u306A\u3092\u307B\u3063\u3066\n\u304F\u3089\u3057\u3066\u3044\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
   m_sharedMaterial: {fileID: 40205502037153279, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
@@ -19927,7 +19927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=55>\u30AB\u30EF\u30A6\u30BD</size>"
+  m_text: "<size=55>\u30AB\u30EF\u30A6\u30BD</size>\n\u3058\u3064\u306F\u306B\u304F\u3057\u3087\u304F\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
   m_sharedMaterial: {fileID: 40205502037153279, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
