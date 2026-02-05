@@ -2409,7 +2409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.89411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11621,7 +11621,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=55>\u308A\u3063\u3059\u3093</size>\n\u3069\u3093\u3050\u308A\u304C\u3060\u3044\u3053\u3046\u3076\u3064\n\u30AF\u30FC\u30EB\u3063\u307D\u3044"
+  m_text: "<size=55>\u308A\u3063\u3059\u3093</size>\n\u3069\u3093\u3050\u308A\u304C\u3060\u3044\u3053\u3046\u3076\u3064\n\u3044\u306A\u304B\u3082\u3093\u3089\u3057\u3044\uFF1F"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
   m_sharedMaterial: {fileID: 40205502037153279, guid: 55ddd94fed227f34b810519b5f4dc5dc, type: 2}
@@ -13454,7 +13454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6308047597671820847
 RectTransform:
   m_ObjectHideFlags: 0
