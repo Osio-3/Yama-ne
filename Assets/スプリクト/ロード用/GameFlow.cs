@@ -11,17 +11,17 @@ public class GameFlow : MonoBehaviour
     {
         ChangeUIManager.Instance?.ResetAll();
         DeleteSave();
-        loader.Load("HomeScene");
+        FindObjectOfType<LoadingScene>().Load("HomeScene");
     }
 
     public void ContinueGame()
     {
-        loader.Load("HomeScene");
+        FindObjectOfType<LoadingScene>().Load("HomeScene");
     }
 
     public void BackToStart()
     {
-        loader.Load("StartScene");
+        FindObjectOfType<LoadingScene>().Load("StartScene");
     }
 
     public void StartStroll()

@@ -21,10 +21,9 @@ public class SaveManager : MonoBehaviour
         // ここにセーブしたい内容を入れる
 
         // ★ UI状態を保存
-        foreach (var kv in ChangeUIManager.Instance.GetAllUnlocked())
+        foreach (var id in ChangeUIManager.Instance.GetAllUnlocked())
         {
-            if (kv.Value)
-                data.unlockedAnimalIds.Add(kv.Key);
+            data.unlockedAnimalIds.Add(id);
         }
 
         // JSON化
@@ -52,7 +51,7 @@ public class SaveManager : MonoBehaviour
             dict[id] = true;
         }
 
-        ChangeUIManager.Instance.SetAllUnlocked(dict);
+        ChangeUIManager.Instance.SetAllUnlocked(data.unlockedAnimalIds);
         Debug.Log("ロード完了");
     }
 }

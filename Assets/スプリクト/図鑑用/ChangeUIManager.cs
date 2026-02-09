@@ -7,8 +7,8 @@ public class ChangeUIManager : MonoBehaviour
     public static ChangeUIManager Instance;
 
     // UIの表示状態を保存
-    private Dictionary<string, bool> encyclopediaUnlocked
-        = new Dictionary<string, bool>();
+    //private Dictionary<string, bool> encyclopediaUnlocked
+        //= new Dictionary<string, bool>();
     private HashSet<string> unlockedAnimals = new HashSet<string>();
 
     void Awake()
@@ -41,16 +41,30 @@ public class ChangeUIManager : MonoBehaviour
         //return result;
     }
 
-    public Dictionary<string, bool> GetAllUnlocked()
+    /*public Dictionary<string, bool> GetAllUnlocked()
     {
         return encyclopediaUnlocked;
+    }*/
+
+    public HashSet<string> GetAllUnlocked()
+    {
+        return unlockedAnimals;
     }
 
-    public void SetAllUnlocked(Dictionary<string, bool> data)
+    public void SetAllUnlocked(List<string> ids)
     {
-        encyclopediaUnlocked.Clear();
-        foreach (var kv in data)
-            encyclopediaUnlocked[kv.Key] = kv.Value;
+        unlockedAnimals.Clear();
+        foreach (var id in ids)
+        {
+            unlockedAnimals.Add(id);
+        }
+
+        // アイコン更新
+        var icons = FindObjectsOfType<EncyclopediaIcon>(true);
+        foreach (var icon in icons)
+        {
+            icon.Refresh();
+        }
     }
 
     // はじめから用
